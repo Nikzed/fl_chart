@@ -9,7 +9,8 @@ abstract class FlTouchEvent {
 
   /// Represents the position of happened touch/pointer event
   ///
-  /// Some events such as [FlPanCancelEvent] and [FlTapCancelEvent]
+  /// Some events such as [FlPanCancelEvent], [FlTapCancelEvent],
+  /// [FlOnScaleStartEvent], [FlOnScaleUpdateEvent] and [FlOnScaleEndEvent]
   /// doesn't have any position (their details come from flutter engine).
   /// That's why this field is nullable
   Offset? get localPosition => null;
@@ -246,4 +247,22 @@ class FlPointerExitEvent extends FlTouchEvent {
   /// Represents the position of happened touch/pointer event
   @override
   Offset get localPosition => event.localPosition;
+}
+
+class FlOnScaleStartEvent extends FlTouchEvent {
+  const FlOnScaleStartEvent(this.details);
+
+  final ScaleStartDetails details;
+}
+
+class FlOnScaleUpdateEvent extends FlTouchEvent {
+  const FlOnScaleUpdateEvent(this.details);
+
+  final ScaleUpdateDetails details;
+}
+
+class FlOnScaleEndEvent extends FlTouchEvent {
+  const FlOnScaleEndEvent(this.details);
+
+  final ScaleEndDetails details;
 }

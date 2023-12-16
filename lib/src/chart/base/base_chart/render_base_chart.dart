@@ -48,6 +48,8 @@ abstract class RenderBaseChart<R extends BaseTouchResponse> extends RenderBox
   /// Recognizes longPress gestures, such as onLongPressStart, onLongPressMoveUpdate and onLongPressEnd
   late LongPressGestureRecognizer _longPressGestureRecognizer;
 
+  late ScaleGestureRecognizer _scaleGestureRecognizer;
+
   /// Initializes our recognizers and implement their callbacks.
   void initGestureRecognizers() {
     _panGestureRecognizer = PanGestureRecognizer();
@@ -93,6 +95,23 @@ abstract class RenderBaseChart<R extends BaseTouchResponse> extends RenderBox
       }
       ..onLongPressEnd = (longPressEndDetails) =>
           _notifyTouchEvent(FlLongPressEnd(longPressEndDetails));
+    _scaleGestureRecognizer = ScaleGestureRecognizer();
+    _scaleGestureRecognizer
+      ..onStart = (onScaleStartDetails) {
+        _notifyTouchEvent(
+          FlOnScaleStartEvent(onScaleStartDetails),
+        );
+      }
+      ..onUpdate = (onScaleUpdateDetails) {
+        _notifyTouchEvent(
+          FlOnScaleUpdateEvent(onScaleUpdateDetails),
+        );
+      }
+      ..onEnd = (onScaleEndDetails) {
+        _notifyTouchEvent(
+          FlOnScaleEndEvent(onScaleEndDetails),
+        );
+      };
   }
 
   @override
@@ -132,13 +151,11 @@ abstract class RenderBaseChart<R extends BaseTouchResponse> extends RenderBox
 
   /// Here we handle mouse hover enter event
   @override
-  PointerEnterEventListener? get onEnter =>
-      (event) => _notifyTouchEvent(FlPointerEnterEvent(event));
+  PointerEnterEventListener? get onEnter => (event) => _notifyTouchEvent(FlPointerEnterEvent(event));
 
   /// Here we handle mouse hover exit event
   @override
-  PointerExitEventListener? get onExit =>
-      (event) => _notifyTouchEvent(FlPointerExitEvent(event));
+  PointerExitEventListener? get onExit => (event) => _notifyTouchEvent(FlPointerExitEvent(event));
 
   /// Invokes the [_touchCallback] to notify listeners of this [FlTouchEvent]
   ///
