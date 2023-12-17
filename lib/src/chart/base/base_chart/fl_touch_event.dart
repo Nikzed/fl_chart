@@ -266,3 +266,15 @@ class FlOnScaleEndEvent extends FlTouchEvent {
 
   final ScaleEndDetails details;
 }
+
+class FlGestureDragStartEvent extends FlTouchEvent {
+  const FlGestureDragStartEvent(this.details);
+
+  final DragStartDetails details;
+}
+
+class FlGestureDragUpdateEvent extends FlTouchEvent {
+  const FlGestureDragUpdateEvent(this.details);
+
+  final DragUpdateDetails details;
+}
