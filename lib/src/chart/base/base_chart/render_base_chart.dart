@@ -53,24 +53,6 @@ abstract class RenderBaseChart<R extends BaseTouchResponse> extends RenderBox im
 
   /// Initializes our recognizers and implement their callbacks.
   void initGestureRecognizers() {
-    // _panGestureRecognizer = PanGestureRecognizer();
-    // _panGestureRecognizer
-    //   ..onDown = (dragDownDetails) {
-    //     _notifyTouchEvent(FlPanDownEvent(dragDownDetails));
-    //   }
-    //   ..onStart = (dragStartDetails) {
-    //     _notifyTouchEvent(FlPanStartEvent(dragStartDetails));
-    //   }
-    //   ..onUpdate = (dragUpdateDetails) {
-    //     _notifyTouchEvent(FlPanUpdateEvent(dragUpdateDetails));
-    //   }
-    //   ..onCancel = () {
-    //     _notifyTouchEvent(const FlPanCancelEvent());
-    //   }
-    //   ..onEnd = (dragEndDetails) {
-    //     _notifyTouchEvent(FlPanEndEvent(dragEndDetails));
-    //   };
-
     _tapGestureRecognizer = TapGestureRecognizer();
     _tapGestureRecognizer
       ..onTapDown = (tapDownDetails) {
